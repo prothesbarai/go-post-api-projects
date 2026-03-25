@@ -40,7 +40,37 @@ go-api-project/
 │── go.mod
 ```
 
+---
 
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/prothesbarai/go-post-api-projects.git
+```
+
+```bash
+cd go-api-project
+```
+
+### 2️⃣ Run the project
+
+```bash
+go run main.go
+```
+OR
+```bash
+go run .
+```
+
+### 🚀 Server Run Logic
+```Go
+port := os.Getenv("PORT")
+if(port == ""){
+    port = "8080"
+}
+router.Run(":"+port)
+```
 
 ### 🚀 Server run হবে:
 
