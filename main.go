@@ -6,10 +6,11 @@ import (
 	"os"
 	"github.com/gin-gonic/gin"
 )
+
 func main() {
 	router := gin.Default()
-	database.ConnectingDB()
-	routes.SetupRoutes(router)
+	database.ConnectDB()
+	routes.SetRoutes(router)
 	port := os.Getenv("PORT")
 	if(port == ""){port = "8080"}
 	router.Run(":"+port)

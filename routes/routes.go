@@ -5,9 +5,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func SetupRoutes(route *gin.Engine) {
-	route.GET("/products",controllers.GetProducts)
-
-	// >>> For Igoner Fav Icons
-	route.GET("/favicon.ico",func(ctx *gin.Context) {ctx.Status(204)})
+func SetRoutes(routers *gin.Engine) {
+	/// >>> For FavIcon
+	routers.GET("/favicon.ico",func(ctx *gin.Context) {ctx.Status(204)})
+	routers.GET("/products",controllers.GetProducts)
 }

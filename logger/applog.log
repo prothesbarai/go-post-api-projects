@@ -1,6 +1,0 @@
-INFO : 2026/03/25 10:03:28 db.go:19: Successfully Load .env file :  root:@tcp(127.0.0.1:3306)/go_api
-INFO : 2026/03/25 10:03:28 db.go:33: Sucessfully Connected Database :  &{{{} {} 0} 0x2034685fc1c8 {{} {} 0} {{} {0 0}} [0x203468728200] {[]} 1 0x20346860e1c0 false map[0x203468728200:map[0x203468728200:true]] map[] 25 25 300000000000 0 0x20346860e3f0 0 0 0 0 0x7ff7a96139c0}
-INFO : 2026/03/25 10:32:18 db.go:19: Successfully Load .env file :  root:@tcp(127.0.0.1:3306)/go_api
-INFO : 2026/03/25 10:32:18 db.go:33: Sucessfully Connected Database :  &{{{} {} 0} 0x13190e214840 {{} {} 0} {{} {0 0}} [0x13190e402000] {[]} 1 0x13190e234460 false map[0x13190e402000:map[0x13190e402000:true]] map[] 25 25 300000000000 0 0x13190e40a000 0 0 0 0 0x7ff7bb75b800}
-INFO : 2026/03/25 10:39:05 db.go:19: Successfully Load .env file :  root:@tcp(127.0.0.1:3306)/go_api
-INFO : 2026/03/25 10:39:05 db.go:33: Sucessfully Connected Database :  &{{{} {} 0} 0x25ae1dd12828 {{} {} 0} {{} {0 0}} [0x25ae1de0a000] {[]} 1 0x25ae1dd0a3f0 false map[0x25ae1de0a000:map[0x25ae1de0a000:true]] map[] 25 25 300000000000 0 0x25ae1dc38070 0 0 0 0 0x7ff6b85ab800}
