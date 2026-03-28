@@ -1,6 +1,5 @@
 # 🚀 Go POST API Project (POST API)
 
-
 A simple REST API project built with Golang using the Gin framework.  
 This project is designed for learning and building scalable backend services.
 
@@ -25,8 +24,8 @@ This project is designed for learning and building scalable backend services.
 
 ---
 
-
 ## 📂 Project Structure - MVC Pattern
+
 ```bash
 go-api-project/
 │── main.go
@@ -45,6 +44,7 @@ go-api-project/
 ## ⚙️ Installation & Setup
 
 ### 1️⃣ Clone the repository
+
 ```bash
 git clone https://github.com/prothesbarai/go-post-api-projects.git
 ```
@@ -58,12 +58,15 @@ cd go-api-project
 ```bash
 go run main.go
 ```
+
 OR
+
 ```bash
 go run .
 ```
 
 ### 🚀 Server Run Logic
+
 ```Go
 port := os.Getenv("PORT")
 if(port == ""){
@@ -72,18 +75,26 @@ if(port == ""){
 router.Run(":"+port)
 ```
 
-### 🚀 Server run হবে:
+### 🚀 Server run হবে
 
 ```bash
 http://localhost:8080/products
 ```
 
+### With Pagination
+
 ```bash
-http://localhost:PORT_NUMBER/PATH
+http://localhost:5000/products?page=2&limit=4
 ```
 
----
+### Format
 
+```bash
+http://localhost:PORT_NUMBER/PATH?QueryPerams
+```
+---
+# Note :: POST API TEST BY- PostMan , set Token + Body
+---
 
 # 📘 HTTP Status Codes (Most Used)
 
@@ -135,31 +146,27 @@ http://localhost:PORT_NUMBER/PATH
 
 ## 🚀 Most Important Codes (Must Use)
 
-* ✅ 200 OK
-* ✅ 201 Created
-* ✅ 204 No Content
-* ❌ 400 Bad Request
-* 🔐 401 Unauthorized
-* ⛔ 403 Forbidden
-* 🔍 404 Not Found
-* ⚠️ 422 Unprocessable Entity
-* 💥 500 Internal Server Error
+- ✅ 200 OK
+- ✅ 201 Created
+- ✅ 204 No Content
+- ❌ 400 Bad Request
+- 🔐 401 Unauthorized
+- ⛔ 403 Forbidden
+- 🔍 404 Not Found
+- ⚠️ 422 Unprocessable Entity
+- 💥 500 Internal Server Error
 
 ---
 
 ## 🧠 Quick Guide
 
-* **2xx → Success**
-* **3xx → Redirect**
-* **4xx → Client Error**
-* **5xx → Server Error**
+- **2xx → Success**
+- **3xx → Redirect**
+- **4xx → Client Error**
+- **5xx → Server Error**
 
 ---
 
-
-
-
-
-
 ## 📧 Contact
+
 #### 👤 Prothes Barai
