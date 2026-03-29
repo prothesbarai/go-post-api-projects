@@ -92,8 +92,11 @@ http://localhost:5000/products?page=2&limit=4
 ```bash
 http://localhost:PORT_NUMBER/PATH?QueryPerams
 ```
+
 ---
+
 # Note :: POST API TEST BY- PostMan , set Token + Body
+
 ---
 
 # 📘 HTTP Status Codes (Most Used)

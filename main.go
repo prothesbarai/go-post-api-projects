@@ -2,10 +2,17 @@ package main
 
 import (
 	"go-post-api-projects/database"
+	"go-post-api-projects/logger"
 	"go-post-api-projects/routes"
 	"os"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
+
+func init(){
+	err := godotenv.Load()
+	if(err != nil){logger.AppLogger.Error.Println("Couldn't Load env file : ",err)}
+}
 
 func main() {
 	router := gin.Default()

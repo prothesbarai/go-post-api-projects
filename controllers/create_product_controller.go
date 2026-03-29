@@ -5,7 +5,6 @@ import (
 	"go-post-api-projects/logger"
 	"go-post-api-projects/models"
 	"net/http"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -27,16 +26,26 @@ func CreateProducts(ginCtx *gin.Context) {
 		return
 	}
 
-	/// >>> JSON body parse
+
+	/// >>> form-data body parse >> This Method Select Option form-data in Postman >> and key value pair and hit 
+	// var input struct{
+	// 	Name  string  `form:"name" binding:"required,min=3,max=100"`
+	// 	Price float64 `form:"price" binding:"required,gt=0"`
+	// }
+	// if err := ginCtx.ShouldBind(&input); err != nil{
+	// 	ginCtx.JSON(http.StatusBadRequest,gin.H{"error" : err.Error()})
+	// 	logger.AppLogger.Error.Println("Input Data Type Problem : ",err)
+	// 	return
+	// }
+
+
+	/// >>> JSON body parse >> This Method Select Option raw in Postman >> and format json like and hit
 	var input struct{
-		Name  string  `form:"name" binding:"required"`
-		Price float64 `form:"price" binding:"required"`
+		Name  string  `json:"name" binding:"required,min=3,max=100"`
+		Price float64 `json:"price" binding:"required,gt=0"`
 	}
-
-
-	if err := ginCtx.ShouldBind(&input); err != nil{
-		ginCtx.JSON(http.StatusBadRequest,gin.H{"error" : err.Error()})
-		logger.AppLogger.Error.Println("Input Data Type Problem : ",err)
+	if err := ginCtx.ShouldBindJSON(&input); err != nil {
+		ginCtx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 

@@ -6,7 +6,9 @@ import (
 )
 
 func SetRoutes(routers *gin.Engine) {
+
 	/// >>> For FavIcon
 	routers.GET("/favicon.ico",func(ctx *gin.Context) {ctx.Status(204)})
 	routers.POST("/products",controllers.CreateProducts)
+	
 }
