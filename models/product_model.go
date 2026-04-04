@@ -1,7 +1,6 @@
 package models
 
-type ProductModel struct{
-	Id int `json:"id"`
-	Name string `json:"name"`
-	Price float64 `json:"price"`
+var ProductModels struct{
+	Name string `form:"name" binding:"required,min=3,max=100"`
+	Price float64 `form:"price" binding:"required,gt=0"`
 }

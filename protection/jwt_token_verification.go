@@ -7,38 +7,33 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
-// >>>  Get Secret Key From .env File
-var secretKey = []byte(getSecret())
-
-func getSecret() string {
-	secret := os.Getenv("JWT_SECRET")
-	if(secret == ""){
-		logger.AppLogger.Error.Println("JWT_SECRET not set in environment")
-	}
-	return secret
+// >>>  Get Secret Key From .env File >> Convert Byte For Mutable but human rot readable only machine readable
+var secretKeys = []byte(getSecretKey())
+func getSecretKey() string{
+    secretKey := os.Getenv("JWT_SECRET")
+    if(secretKey == ""){
+        logger.AppLogger.Error.Println("Secret Key Not Found in evn file")
+    }
+    return secretKey
 }
 
 
 /// >> Generated Token & Every Day 12:00PM expire its
-func GenerateToken(username string) (string, error) {
-    // 👉 BD timezone set করা
-    loc, _ := time.LoadLocation("Asia/Dhaka")
+func GenerateToken(username string) (string,error){
+    // >> Get BD Location
+    loc,_:= time.LoadLocation("Asia/Dhaka")
+    currentTime := time.Now().In(loc)
+    expairTime := time.Date(currentTime.Year(),currentTime.Month(),currentTime.Day(),0,0,0,0,currentTime.Location())
 
-    presentTime := time.Now().In(loc)
-
-    //  আজকের রাত 12:00 (midnight)
-    expireTime := time.Date(presentTime.Year(),presentTime.Month(),presentTime.Day(), 0, 0, 0, 0,loc,)
-
-    // যদি এখন সময় already রাত 12টা পার হয়ে যায়
-    if !presentTime.Before(expireTime) {
-        expireTime = expireTime.Add(24 * time.Hour)
+    // >> Check: Is it already past 12 ? means currentTime ≥ expairTime
+    if(!currentTime.Before(expairTime)){
+        expairTime = expairTime.Add(24 * time.Hour)
     }
 
-    claims := jwt.MapClaims{
-        "username": username,
-        "exp":      expireTime.Unix(),
-    }
-
-    token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-    return token.SignedString(secretKey)
+    claims := jwt.MapClaims{"username" : username,"exp" : expairTime.Unix()}
+    createToken := jwt.NewWithClaims(jwt.SigningMethodES512,claims)
+    return createToken.SignedString(secretKeys)
 }
+
+
+/// >>> Login (token create) 

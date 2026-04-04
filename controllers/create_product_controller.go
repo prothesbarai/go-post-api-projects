@@ -5,10 +5,10 @@ import (
 	"go-post-api-projects/logger"
 	"go-post-api-projects/models"
 	"net/http"
+
 	"github.com/gin-gonic/gin"
 )
 
-var products []models.ProductModel
 
 func CreateProducts(ginCtx *gin.Context) {
 	// >>> Bearer token 
@@ -28,29 +28,23 @@ func CreateProducts(ginCtx *gin.Context) {
 
 
 	/// >>> form-data body parse >> This Method Select Option form-data in Postman >> and key value pair and hit 
-	// var input struct{
-	// 	Name  string  `form:"name" binding:"required,min=3,max=100"`
-	// 	Price float64 `form:"price" binding:"required,gt=0"`
-	// }
-	// if err := ginCtx.ShouldBind(&input); err != nil{
-	// 	ginCtx.JSON(http.StatusBadRequest,gin.H{"error" : err.Error()})
+	if err := ginCtx.ShouldBind(&models.ProductModels); err != nil{
+		ginCtx.JSON(http.StatusBadRequest,gin.H{"error" : err.Error()})
+		logger.AppLogger.Error.Println("Input Data Type Problem : ",err)
+		return
+	}
+
+
+	/// >>> JSON body parse >> This Method Select Option raw in Postman >> and format json like and hit
+	// if err := ginCtx.ShouldBindJSON(&models.ProductModels); err != nil {
+	// 	ginCtx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	// 	logger.AppLogger.Error.Println("Input Data Type Problem : ",err)
 	// 	return
 	// }
 
 
-	/// >>> JSON body parse >> This Method Select Option raw in Postman >> and format json like and hit
-	var input struct{
-		Name  string  `json:"name" binding:"required,min=3,max=100"`
-		Price float64 `json:"price" binding:"required,gt=0"`
-	}
-	if err := ginCtx.ShouldBindJSON(&input); err != nil {
-		ginCtx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-
-
-	addProduct, err := database.DB.Exec("INSERT INTO products (name, price) VALUES (?,?)",input.Name,input.Price)
+	addProduct, err := database.DB.Exec("INSERT INTO products (name, price) VALUES (?,?)",models.ProductModels.Name,models.ProductModels.Price)
+	
 	if (err != nil) {
 		ginCtx.JSON(http.StatusInternalServerError,gin.H{"error" : err.Error()})
 		logger.AppLogger.Error.Println("Product Not Insert : ",err)

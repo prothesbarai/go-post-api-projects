@@ -17,6 +17,7 @@ func ConnectDB() {
 	db, err := sql.Open("mysql",dsn)
 	if(err != nil){
 		logger.AppLogger.Error.Println("Database Connection Error : ",err)
+		os.Exit(1)
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(),5*time.Second)
@@ -24,6 +25,7 @@ func ConnectDB() {
 
 	if err := db.PingContext(ctx); err != nil{
 		logger.AppLogger.Error.Println("Database unreachable : ",err)
+		os.Exit(1)
 	}
 
 	db.SetMaxOpenConns(25)
